@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tiutlo"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:textColor="#F41212"
+        android:textSize="26dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="419dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imagenTijera"
+            android:layout_width="wrap_content"
+            android:layout_height="419dp"
+            android:layout_weight="1"
+            android:src="@drawable/tijera" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="104dp"
+            android:layout_height="419dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center_horizontal"
+            android:text="ACCESO"
+            android:textColor="#AA1D1D"
+            android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="419dp"
+            android:layout_weight="1"
+            android:src="@drawable/peine" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/nombreUsuario"
+            android:layout_width="284dp"
+            android:layout_height="61dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginBottom="29dp"
+            android:ems="10"
+            android:hint="Introduzca nombre de Usuario"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/contraseniaUsuario"
+            android:layout_width="284dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="55dp"
+            android:ems="10"
+            android:hint="Introduzca contraseña"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:layout_marginBottom="19dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnRegistro"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="33dp"
+                android:layout_weight="1"
+                android:text="Registrarse" />
+
+            <Button
+                android:id="@+id/btnAceptar"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="33dp"
+                android:layout_weight="1"
+                android:text="Aceptar" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
