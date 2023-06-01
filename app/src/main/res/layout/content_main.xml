@@ -16,7 +16,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="419dp"
+        android:layout_height="390dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -72,6 +72,14 @@
             android:inputType="textPassword"
             android:textAlignment="center"
             android:layout_marginBottom="19dp"/>
+
+        <CheckBox
+            android:id="@+id/mostrarContrasenia"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="50dp"
+            android:text="Mostrar Contraseña" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -10,20 +10,16 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ActionBarPolicy;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,37 +27,78 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+
+
+
 
 public class ActivityClientes extends AppCompatActivity {
 
     private String fecha;
     private Spinner spinner;
     private String servicioSeleccionado;
+    private ListView listaDeCitas;
     private int selectedIndex;
+    private ArrayList<String> listaCitas = new ArrayList<>();
+    private ArrayList<Date> fechasSeleccionadas = new ArrayList<>();
+    private JSONArray jsonArray;
+    private CalendarView calendarView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ventana_clientes);
+        listaDeCitas=findViewById(R.id.listaCitas);
+        calendarView=findViewById(R.id.calendario);
+        Bundle datos= getIntent().getExtras();
+        /*while (!getIntent().getExtras().isEmpty()){
+            ArrayList<String> listaDatos= new ArrayList<>();
+            String fecha= datos.getString("FechaCita");
+            String hora=datos.getString("HoraCita");
+            String servicio=datos.getString("Servicio");
+            String empleado=datos.getString("Personal");
+            String citaCompleta="Fecha: "+fecha+ ", Hora: "+hora+" ,Servicio escogido: "+servicio+" ,Empleado que realiza: "+empleado;
+            listaDatos.add(citaCompleta);
+            // Crear el adaptador y establecerlo en el ListView
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaDatos);
+            listaDeCitas.setAdapter(adapter);
+        }*/
 
-        CalendarView calendarView = findViewById(R.id.calendario);
-
-        // Obtener la fecha actual
-        Calendar calendar = Calendar.getInstance();
-        long currentDate = calendar.getTimeInMillis();
-
-        // Establecer la fecha actual como valor predeterminado en el CalendarView
-        calendarView.setDate(currentDate);
-        String usuario = getIntent().getStringExtra("Nombre Usuario");
-        TextView texto = (TextView) findViewById(R.id.textoBienvenida);
-        texto.setText(texto.getText() + " " + usuario);
+        String resultadosConsulta=datos.getString("Resultados");
+        mostrarCitas(resultadosConsulta);
 
 
+    }
 
+    private void mostrarCitas(String resultadosConsulta) {
+        // Agrega comas entre los objetos JSON
+        resultadosConsulta = resultadosConsulta.replace("}{", "},{");
+
+        // Agrega corchetes alrededor del string completo para que sea un arreglo JSON válido
+        resultadosConsulta = "[" + resultadosConsulta + "]";
+
+        try {
+            jsonArray = new JSONArray(resultadosConsulta);
+            // Recorre el arreglo de objetos JSON
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String fecha = jsonObject.getString("FECHA");
+                String hora = jsonObject.getString("HORA");
+                String descripcion = jsonObject.getString("DESCRIPCION");
+                String cita="Cita "+jsonObject.getInt("ID")+": \nFecha: "+fecha+" "+hora+" \nServicio: "+descripcion;
+                listaCitas.add(cita);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Crear el adaptador y establecerlo en el ListView
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaCitas);
+        listaDeCitas.setAdapter(adapter);
     }
 
     @Override
@@ -77,7 +114,7 @@ public class ActivityClientes extends AppCompatActivity {
         if (id == R.id.aniadirCita) {
             // Acción para la opción 1
             Calendar calendar = Calendar.getInstance();
-            TextView mostrarfecha=(TextView) findViewById(R.id.fechaEscogida);
+            TextView mostrarfecha=new TextView(this);
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     ActivityClientes.this,
                     new DatePickerDialog.OnDateSetListener() {
@@ -132,7 +169,8 @@ public class ActivityClientes extends AppCompatActivity {
     }
 
     private void consultarServicios() {
-        String url = "http://192.168.50.214/webservcapp/consultaServicios.php?fecha=" + fecha;
+        //192.168.50.119 IP Movil
+        String url = "http://192.168.14.119/webservcapp/consultaServicios.php?fecha=" + fecha;
         ConsultaServiciosTask consultaServiciosTask = new ConsultaServiciosTask();
         consultaServiciosTask.execute(url);
     }

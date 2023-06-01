@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#8600B5A6"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:text="Registro"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="378dp"
+        android:layout_height="59dp"
+        android:hint="Nombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editTextLastName"
+        android:layout_width="378dp"
+        android:layout_height="59dp"
+        android:hint="Apellidos" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="378dp"
+        android:layout_height="59dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="378dp"
+        android:layout_height="59dp"
+        android:hint="Teléfono"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/editTextAccount"
+        android:layout_width="378dp"
+        android:layout_height="59dp"
+        android:hint="Cuenta" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="378dp"
+        android:layout_height="59dp"
+        android:hint="Contraseña"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Tipo de Registro"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonPersonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal" />
+
+        <RadioButton
+            android:id="@+id/radioButtonClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cliente" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/extraFieldsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/spinnerProfession"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/profession_prompt" />
+
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción"
+            android:inputType="textMultiLine"
+            android:minLines="3" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/botonCancelar"
+            android:layout_width="163dp"
+            android:layout_height="52dp"
+            android:layout_marginRight="20dp"
+            android:text="Cancelar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/botonAceptar"
+            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/botonAceptar"
+            android:layout_width="163dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="4dp"
+            android:text="Aceptar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_marginTop="150dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

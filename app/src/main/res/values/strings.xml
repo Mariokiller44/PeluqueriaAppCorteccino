@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PeluqueriaAlCorteccino</string>
+    <string-array name="professions_array">
+        <item>Peluquero</item>
+        <item>Esteticista</item>
+        <item>Manicurista</item>
+    </string-array>
+    <string name="profession_prompt">Selecciona una profesión</string>
 </resources>
